@@ -1,0 +1,31 @@
+%table
+  %thead
+    %tr
+<% attributes.each do |attribute| -%>
+      %th <%= attribute.human_name %>
+<% end -%>
+      %th Actions
+      %th
+      %th
+
+  %tbody
+    - <%= plural_table_name %>.each do |<%= singular_table_name %>|
+      %tr
+<% attributes.each do |attribute| -%>
+        %td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+        %td
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', <%= singular_table_name %>, style: "color: white;"
+        %td
+          %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-<%= singular_table_name %>-dialog-#{<%= singular_table_name %>.id}').showModal()"} Edit
+          %dialog{id: "edit-<%= singular_table_name %>-dialog-#{<%= singular_table_name %>.id}"}
+            %h3 Edit <%= human_name %>
+            = render '<%= plural_table_name %>/edit_modal', <%= singular_table_name %>: <%= singular_table_name %>
+            %button{type: "button", onclick: "document.getElementById('edit-<%= singular_table_name %>-dialog-#{<%= singular_table_name %>.id}').close()"} Cancel
+        %td
+          %button{type: "button", style: "background-color: oklch(0.514 0.222 16.935);", onclick: "document.getElementById('destroy-<%= singular_table_name %>-dialog-#{<%= singular_table_name %>.id}').showModal()"} Destroy
+          %dialog{id: "destroy-<%= singular_table_name %>-dialog-#{<%= singular_table_name %>.id}"}
+            %h3 Destroy <%= human_name %>
+            = render '<%= plural_table_name %>/destroy_modal', <%= singular_table_name %>: <%= singular_table_name %>
+            %button{type: "button", onclick: "document.getElementById('destroy-<%= singular_table_name %>-dialog-#{<%= singular_table_name %>.id}').close()"} Cancel
