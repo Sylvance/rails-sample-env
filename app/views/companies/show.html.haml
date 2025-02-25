@@ -1,5 +1,24 @@
-%p#notice= notice
+- if notice
+  %p#notice= notice
+
+%h1 Show Company
+
 %div= @company.name
+
 = link_to 'Edit', edit_company_path(@company)
 |
 = link_to 'Back', companies_path
+
+%br
+%br
+
+%h3 Items
+= render 'items/index', items: @company.items
+
+%br
+%br
+
+= render 'items/form_modal', company_id: @company.id
+
+%br
+%br

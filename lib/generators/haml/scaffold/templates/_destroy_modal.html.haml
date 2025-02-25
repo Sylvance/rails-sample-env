@@ -1,0 +1,4 @@
+%p Are you sure you want to delete this <%= singular_table_name %>?
+%p= <%= singular_table_name %>.name
+
+%p= link_to 'Sure, Destroy it', <%= singular_table_name %>, method: :delete, style: "color: red;"

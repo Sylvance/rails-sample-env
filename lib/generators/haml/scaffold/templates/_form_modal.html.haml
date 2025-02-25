@@ -1,0 +1,7 @@
+%button{type: "button", onclick: "document.getElementById('new-<%= singular_table_name %>-dialog').showModal()"} Add New <%= human_name %>
+
+%dialog{id: "new-<%= singular_table_name %>-dialog"}
+  %h3 Add New <%= human_name %>
+  - @<%= singular_table_name %> = <%= class_name %>.new<% if attributes_names.include? 'company_id' %>(company_id: company_id)<% end %>
+  = render '<%= plural_table_name %>/form'
+  %button{type: "button", onclick: "document.getElementById('new-<%= singular_table_name %>-dialog').close()"} Cancel

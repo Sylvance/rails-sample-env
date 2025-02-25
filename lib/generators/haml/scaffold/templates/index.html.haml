@@ -1,0 +1,9 @@
+%h1 <%= plural_table_name.titleize %>
+
+= render '<%= plural_table_name %>/index', <%= plural_table_name %>: @<%= plural_table_name %>
+
+<% if attributes_names.include? 'company_id' -%>
+= render '<%= plural_table_name %>/form_modal', company_id: current_company.id
+<% else -%>
+= render '<%= plural_table_name %>/form_modal'
+<% end -%>
