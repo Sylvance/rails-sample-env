@@ -2,7 +2,7 @@
 %html
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title= content_for(:title) || "Rails Graphql Sample"
+    %title= content_for(:title) || "Senri Interview"
     %meta{content: "width=device-width,initial-scale=1", name: "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
@@ -12,13 +12,10 @@
   %body.header-layout
     %header#header
       .container
-        %h1.font-bold.text-2xl Rails Graphql Sample
+        %h1.font-bold.text-2xl Senri Interview
         - if current_company
           %h1= current_company.name
-          %br
-          %br
+          %hr
     %main#main
-      - if notice.present?
-        .flash{"data-action" => "animationend->element-removal#remove", "data-controller" => "element-removal", popover: "", role: "alert", style: "--flash-position: 5rem;"}= notice
       .container
         = yield

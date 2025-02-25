@@ -1,4 +1,5 @@
-%p#notice= notice
+- if notice
+  %p#notice= notice
 
 %p
   %b Name:
@@ -8,7 +9,7 @@
   = @item.description
 %p
   %b Company:
-  = @item.company
+  = @item.company_id
 
 = link_to 'Edit', edit_item_path(@item)
 \|
