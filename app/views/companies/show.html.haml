@@ -1,7 +1,13 @@
 - if notice
   %p#notice= notice
 
+%h1 Show Company
+
 %div= @company.name
+
+= link_to 'Edit', edit_company_path(@company)
+|
+= link_to 'Back', companies_path
 
 %br
 %br
@@ -16,7 +22,3 @@
 
 %br
 %br
-
-= link_to 'Edit', edit_company_path(@company)
-|
-= link_to 'Back', companies_path

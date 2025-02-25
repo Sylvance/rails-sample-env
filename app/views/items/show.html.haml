@@ -1,6 +1,8 @@
 - if notice
   %p#notice= notice
 
+%h1 Show Item
+
 %p
   %b Name:
   = @item.name
@@ -14,3 +16,17 @@
 = link_to 'Edit', edit_item_path(@item)
 \|
 = link_to 'Back', items_path
+
+%br
+%br
+
+%h3 Vat Rates
+= render 'vat_rates/index', vat_rates: @item.vat_rates
+
+%br
+%br
+
+= render 'vat_rates/form_modal', item_id: @item.id
+
+%br
+%br

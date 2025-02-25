@@ -13,11 +13,8 @@
         %td= item.name
         %td= item.description
         %td
-          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);", onclick: "document.getElementById('show-item-dialog-#{item.id}').showModal()"} Show
-          %dialog{id: "show-item-dialog-#{item.id}"}
-            %h3 Show Item
-            = render 'items/show_modal', item: item
-            %button{type: "button", onclick: "document.getElementById('show-item-dialog-#{item.id}').close()"} Cancel
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', item, style: "color: white;"
         %td
           %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-item-dialog-#{item.id}').showModal()"} Edit
           %dialog{id: "edit-item-dialog-#{item.id}"}

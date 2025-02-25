@@ -1,0 +1,7 @@
+%button{type: "button", onclick: "document.getElementById('new-vat-rate-dialog').showModal()"} Add New VAT Rate
+
+%dialog#new-vat-rate-dialog
+  %h3 Add New VAT Rate
+  - @vat_rate = VatRate.new(item_id: item_id)
+  = render 'vat_rates/form'
+  %button{type: "button", onclick: "document.getElementById('new-vat-rate-dialog').close()"} Cancel
