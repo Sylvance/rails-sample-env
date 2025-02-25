@@ -18,9 +18,21 @@
         %td= vat_rate.item_id
         %td= vat_rate.active_from
         %td= vat_rate.active_to
-        %td= link_to 'Show', vat_rate
-        %td= link_to 'Edit', edit_vat_rate_path(vat_rate)
-        %td= link_to 'Destroy', vat_rate, method: :delete, data: { confirm: 'Are you sure?' }
+        %td
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', vat_rate, style: "color: white;"
+        %td
+          %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-vat-rate-dialog-#{vat_rate.id}').showModal()"} Edit
+          %dialog{id: "edit-vat-rate-dialog-#{vat_rate.id}"}
+            %h3 Edit Vat_rate
+            = render 'vat_rates/edit_modal', vat_rate: vat_rate
+            %button{type: "button", onclick: "document.getElementById('edit-vat-rate-dialog-#{vat_rate.id}').close()"} Cancel
+        %td
+          %button{type: "button", style: "background-color: oklch(0.514 0.222 16.935);", onclick: "document.getElementById('destroy-vat-rate-dialog-#{vat_rate.id}').showModal()"} Destroy
+          %dialog{id: "destroy-vat-rate-dialog-#{vat_rate.id}"}
+            %h3 Destroy Vat_rate
+            = render 'vat_rates/destroy_modal', vat_rate: vat_rate
+            %button{type: "button", onclick: "document.getElementById('destroy-vat-rate-dialog-#{vat_rate.id}').close()"} Cancel
 
 %br
 

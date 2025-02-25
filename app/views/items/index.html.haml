@@ -16,9 +16,21 @@
         %td= item.name
         %td= item.description
         %td= item.company_id
-        %td= link_to 'Show', item
-        %td= link_to 'Edit', edit_item_path(item)
-        %td= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }
+        %td
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', item, style: "color: white;"
+        %td
+          %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-item-dialog-#{item.id}').showModal()"} Edit
+          %dialog{id: "edit-item-dialog-#{item.id}"}
+            %h3 Edit Item
+            = render 'items/edit_modal', item: item
+            %button{type: "button", onclick: "document.getElementById('edit-item-dialog-#{item.id}').close()"} Cancel
+        %td
+          %button{type: "button", style: "background-color: oklch(0.514 0.222 16.935);", onclick: "document.getElementById('destroy-item-dialog-#{item.id}').showModal()"} Destroy
+          %dialog{id: "destroy-item-dialog-#{item.id}"}
+            %h3 Destroy Item
+            = render 'items/destroy_modal', item: item
+            %button{type: "button", onclick: "document.getElementById('destroy-item-dialog-#{item.id}').close()"} Cancel
 
 %br
 
