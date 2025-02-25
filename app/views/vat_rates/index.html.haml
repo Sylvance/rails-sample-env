@@ -7,7 +7,7 @@
       %th Item
       %th Active from
       %th Active to
-      %th
+      %th Actions
       %th
       %th
 
@@ -15,7 +15,7 @@
     - @vat_rates.each do |vat_rate|
       %tr
         %td= vat_rate.rate
-        %td= vat_rate.item
+        %td= vat_rate.item_id
         %td= vat_rate.active_from
         %td= vat_rate.active_to
         %td= link_to 'Show', vat_rate
