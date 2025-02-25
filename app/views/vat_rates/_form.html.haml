@@ -1,0 +1,22 @@
+= form_for @vat_rate do |f|
+  - if @vat_rate.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@vat_rate.errors.count, "error")} prohibited this vat_rate from being saved:"
+      %ul
+        - @vat_rate.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :rate
+    = f.text_field :rate
+  .field
+    = f.label :item
+    = f.text_field :item
+  .field
+    = f.label :active_from
+    = f.date_select :active_from
+  .field
+    = f.label :active_to
+    = f.date_select :active_to
+  .actions
+    = f.submit 'Save'

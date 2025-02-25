@@ -1,0 +1,27 @@
+%h1 Listing vat_rates
+
+%table
+  %thead
+    %tr
+      %th Rate
+      %th Item
+      %th Active from
+      %th Active to
+      %th
+      %th
+      %th
+
+  %tbody
+    - @vat_rates.each do |vat_rate|
+      %tr
+        %td= vat_rate.rate
+        %td= vat_rate.item
+        %td= vat_rate.active_from
+        %td= vat_rate.active_to
+        %td= link_to 'Show', vat_rate
+        %td= link_to 'Edit', edit_vat_rate_path(vat_rate)
+        %td= link_to 'Destroy', vat_rate, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Vat rate', new_vat_rate_path

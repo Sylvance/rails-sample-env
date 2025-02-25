@@ -1,14 +1,33 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title RailsGraphqlSample
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= content_for(:title) || "Rails Graphql Sample"
+    %meta{content: "width=device-width,initial-scale=1", name: "viewport"}/
+    %meta{content: "yes", name: "apple-mobile-web-app-capable"}/
+    %meta{content: "yes", name: "mobile-web-app-capable"}/
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    - if current_company
-      %h1= current_company.name
-      %hr
-    = yield
+    = yield :head
+    %link{href: "/icon.png", rel: "icon", type: "image/png"}/
+    %link{href: "/icon.svg", rel: "icon", type: "image/svg+xml"}/
+    %link{href: "/icon.png", rel: "apple-touch-icon"}/
+    = stylesheet_link_tag "css-zero/reset", "data-turbo-track": "reload"
+    = stylesheet_link_tag "css-zero/variables", "data-turbo-track": "reload"
+    = stylesheet_link_tag "css-zero/utilities", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+  %body.header-layout
+    %header#header
+      .container
+        %h1.font-bold.text-2xl Rails Graphql Sample
+        - if current_company
+          %h1= current_company.name
+          %br
+          %br
+    %main#main
+      - if notice.present?
+        .flash{"data-action" => "animationend->element-removal#remove", "data-controller" => "element-removal", popover: "", role: "alert", style: "--flash-position: 5rem;"}= notice
+      .container
+        = yield

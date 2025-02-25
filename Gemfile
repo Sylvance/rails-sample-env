@@ -1,10 +1,10 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.6'
+ruby "3.1.6"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0'
+# Bundle edge Rails instead: gem "rails", github: "rails/rails"
+gem "rails", "~> 6.0"
 
 
 gem "bcrypt", "~> 3.1"
@@ -29,23 +29,23 @@ gem "turbolinks", "~> 5.2"
 gem "uglifier", "~> 4.2"
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
-  gem 'annotate'
-  gem 'bullet'
-  gem 'faker'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'spring'
-  gem 'web-console', '>= 3.3.0'
+  gem "annotate"
+  gem "bullet"
+  gem "faker"
+  gem "listen", ">= 3.0.5", "< 3.2"
+  gem "spring-watcher-listen", "~> 2.0.0"
+  gem "spring"
+  gem "web-console", ">= 3.3.0"
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
-  gem 'chromedriver-helper'
-  gem 'selenium-webdriver'
+  gem "capybara", ">= 2.15"
+  gem "selenium-webdriver"
+  gem "webdrivers", "~> 5.0"
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
