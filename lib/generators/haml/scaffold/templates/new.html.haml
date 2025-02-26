@@ -3,13 +3,3 @@
 = render 'form'
 
 = link_to 'Back', <%= index_helper %>_path
-
-# lib/generators/haml/scaffold/templates/_form.html.haml
-= form_with(model: @<%= singular_table_name %>) do |form|
-<% attributes.each do |attribute| -%>
-  .field
-    = form.label :<%= attribute.name %>
-    = form.<%= attribute.field_type %> :<%= attribute.name %>
-<% end -%>
-  .actions
-    = form.submit
