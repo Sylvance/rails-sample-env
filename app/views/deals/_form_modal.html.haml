@@ -1,0 +1,7 @@
+%button{type: "button", onclick: "document.getElementById('new-deal-dialog').showModal()"} Add New Deal
+
+%dialog{id: "new-deal-dialog"}
+  %h3 Add New Deal
+  - @deal = Deal.new(transaction_id: transaction_id)
+  = render 'deals/form'
+  %button{type: "button", onclick: "document.getElementById('new-deal-dialog').close()"} Cancel

@@ -1,0 +1,7 @@
+%button{type: "button", onclick: "document.getElementById('new-transaction-dialog').showModal()"} Add New Transaction
+
+%dialog{id: "new-transaction-dialog"}
+  %h3 Add New Transaction
+  - @transaction = Transaction.new(company_id: company_id)
+  = render 'transactions/form', company_users: company_users, company_customers: company_customers
+  %button{type: "button", onclick: "document.getElementById('new-transaction-dialog').close()"} Cancel

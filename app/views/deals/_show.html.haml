@@ -1,0 +1,28 @@
+- if notice
+  %p#notice= notice
+
+%p
+  %b Item:
+  = @deal.item
+%p
+  %b Transaction:
+  = @deal.transaction
+%p
+  %b Quantity:
+  = @deal.quantity
+%p
+  %b Price:
+  = @deal.price
+%p
+  %b Vat rate:
+  = @deal.vat_rate
+%p
+  %b Total excl vat:
+  = @deal.total_excl_vat
+%p
+  %b Total incl vat:
+  = @deal.total_incl_vat
+
+= link_to 'Edit', edit_deal_path(@deal)
+\|
+= link_to 'Back', deals_path

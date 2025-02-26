@@ -1,0 +1,28 @@
+- if notice
+  %p#notice= notice
+
+%p
+  %b Transaction date:
+  = @transaction.transaction_date
+%p
+  %b Notes:
+  = @transaction.notes
+%p
+  %b Total amount excl vat:
+  = @transaction.total_amount_excl_vat
+%p
+  %b Total amount incl vat:
+  = @transaction.total_amount_incl_vat
+%p
+  %b Company:
+  = @transaction.company_id
+%p
+  %b Customer:
+  = @transaction.customer_id
+%p
+  %b User:
+  = @transaction.user_id
+
+= link_to 'Edit', edit_transaction_path(@transaction)
+\|
+= link_to 'Back', transactions_path

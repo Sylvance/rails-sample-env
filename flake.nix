@@ -58,10 +58,21 @@
             name = "run";
             category = "devshell";
             help = "Run the application";
-            command = "rails s";
+            command = "bundle exec rails s";
+          }
+          {
+            name = "migrate";
+            category = "devshell";
+            help = "Migrate the application";
+            command = "bundle exec rails db:migrate";
+          }
+          {
+            name = "seed";
+            category = "devshell";
+            help = "Seed the application";
+            command = "bundle exec rails db:seed";
           }
         ];
       };
     });
 }
-
