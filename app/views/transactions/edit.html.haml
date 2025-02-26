@@ -1,0 +1,7 @@
+%h1 Editing Transaction
+
+= render 'form', company_users: @transaction.company.users, company_customers: @transaction.company.customers
+
+= link_to 'Show', @transaction
+\|
+= link_to 'Back', transactions_path

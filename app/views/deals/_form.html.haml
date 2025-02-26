@@ -1,0 +1,31 @@
+= form_with(model: @deal) do |form|
+  - if @deal.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@deal.errors.count, "error")} prohibited this deal from being saved:"
+      %ul
+        - @deal.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = form.label :item_id
+    = form.select :item_id, options_for_select(Transaction.where(id: @deal.transaction_id).first.company.items.map { |item| [item.name, item.id] }, @deal.item_id)
+  .field
+    = form.label :transaction_id
+    = form.text_field :transaction_id, name: "deal[transaction_id]", value: @deal.transaction_id
+  .field
+    = form.label :quantity
+    = form.number_field :quantity
+  .field
+    = form.label :price
+    = form.text_field :price
+  .field
+    = form.label :vat_rate
+    = form.text_field :vat_rate
+  .field
+    = form.label :total_excl_vat
+    = form.text_field :total_excl_vat
+  .field
+    = form.label :total_incl_vat
+    = form.text_field :total_incl_vat
+  .actions
+    = form.submit

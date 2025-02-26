@@ -22,3 +22,15 @@
 
 %br
 %br
+
+
+%h3 Transactions
+= render 'transactions/index', transactions: @company.transactions
+
+%br
+%br
+
+= render 'transactions/form_modal', company_id: @company.id, company_users: @company.users, company_customers: @company.customers
+
+%br
+%br

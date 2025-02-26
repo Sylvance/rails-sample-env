@@ -1,0 +1,43 @@
+%h1 Listing Deals
+
+%table
+  %thead
+    %tr
+      %th item
+      %th transaction
+      %th quantity
+      %th price
+      %th vat_rate
+      %th total_excl_vat
+      %th total_incl_vat
+      %th Actions
+
+  %tbody
+    - @deals.each do |deal|
+      %tr
+        %td= deal.item
+        %td= deal.transaction
+        %td= deal.quantity
+        %td= deal.price
+        %td= deal.vat_rate
+        %td= deal.total_excl_vat
+        %td= deal.total_incl_vat
+        %td
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', deal, style: "color: white;"
+        %td
+          %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-deal-dialog-#{deal.id}').showModal()"} Edit
+          %dialog{id: "edit-deal-dialog-#{deal.id}"}
+            %h3 Edit Deals
+            = render 'deals/edit_modal', deal: deal
+            %button{type: "button", onclick: "document.getElementById('edit-deal-dialog-#{deal.id}').close()"} Cancel
+        %td
+          %button{type: "button", style: "background-color: oklch(0.514 0.222 16.935);", onclick: "document.getElementById('destroy-deal-dialog-#{deal.id}').showModal()"} Destroy
+          %dialog{id: "destroy-deal-dialog-#{deal.id}"}
+            %h3 Destroy deal
+            = render 'deals/destroy_modal', deal: deal
+            %button{type: "button", onclick: "document.getElementById('destroy-deal-dialog-#{deal.id}').close()"} Cancel
+
+%br
+
+= link_to 'New Deal', new_deal_path

@@ -1,0 +1,43 @@
+%h1 Listing Transactions
+
+%table
+  %thead
+    %tr
+      %th transaction_date
+      %th notes
+      %th total_amount_excl_vat
+      %th total_amount_incl_vat
+      %th company
+      %th customer
+      %th user
+      %th Actions
+
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= transaction.transaction_date
+        %td= transaction.notes
+        %td= transaction.total_amount_excl_vat
+        %td= transaction.total_amount_incl_vat
+        %td= transaction.company_id
+        %td= transaction.customer_id
+        %td= transaction.user_id
+        %td
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', transaction, style: "color: white;"
+        %td
+          %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-transaction-dialog-#{transaction.id}').showModal()"} Edit
+          %dialog{id: "edit-transaction-dialog-#{transaction.id}"}
+            %h3 Edit Transactions
+            = render 'transactions/edit_modal', transaction: transaction
+            %button{type: "button", onclick: "document.getElementById('edit-transaction-dialog-#{transaction.id}').close()"} Cancel
+        %td
+          %button{type: "button", style: "background-color: oklch(0.514 0.222 16.935);", onclick: "document.getElementById('destroy-transaction-dialog-#{transaction.id}').showModal()"} Destroy
+          %dialog{id: "destroy-transaction-dialog-#{transaction.id}"}
+            %h3 Destroy transaction
+            = render 'transactions/destroy_modal', transaction: transaction
+            %button{type: "button", onclick: "document.getElementById('destroy-transaction-dialog-#{transaction.id}').close()"} Cancel
+
+%br
+
+= link_to 'New Transaction', new_transaction_path
