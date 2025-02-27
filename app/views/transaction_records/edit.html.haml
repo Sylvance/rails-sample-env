@@ -1,0 +1,7 @@
+%h1 Editing Transaction Record
+
+= render 'form', company_users: @transaction_record.company.users, company_customers: @transaction_record.company.customers
+
+= link_to 'Show', @transaction_record
+\|
+= link_to 'Back', transaction_records_path

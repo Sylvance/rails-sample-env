@@ -1,0 +1,44 @@
+- if notice
+  %p#notice= notice
+
+%h1 Show Transaction Record
+
+%p
+  %b Transaction date:
+  = @transaction_record.transaction_date
+%p
+  %b Notes:
+  = @transaction_record.notes
+%p
+  %b Total amount excl vat:
+  = @transaction_record.total_amount_excl_vat
+%p
+  %b Total amount incl vat:
+  = @transaction_record.total_amount_incl_vat
+%p
+  %b Company:
+  = @transaction_record.company_id
+%p
+  %b Customer:
+  = @transaction_record.customer_id
+%p
+  %b User:
+  = @transaction_record.user_id
+
+= link_to 'Edit', edit_transaction_record_path(@transaction_record)
+\|
+= link_to 'Back', transaction_records_path
+
+%br
+%br
+
+%h3 Deals
+= render 'deals/index', deals: @transaction_record.deals
+
+%br
+%br
+
+= render 'deals/form_modal', transaction_record_id: @transaction_record.id
+
+%br
+%br

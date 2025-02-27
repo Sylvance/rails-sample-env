@@ -12,27 +12,3 @@
 = link_to 'Edit', edit_<%= singular_route_name %>_path(@<%= singular_table_name %>)
 \|
 = link_to 'Back', <%= index_helper %>_path
-
-<%# Check common association patterns for Rails models %>
-<% has_many_associations = [
-  ["vat_rates", "item"],
-] %>
-
-<% has_many_associations.each do |assoc, parent| %>
-<%# Only include this section if we're generating a model that typically has_many of this association %>
-<% if singular_table_name == parent %>
-%br
-%br
-
-%h3 <%= assoc.titleize %>
-= render '<%= assoc %>/index', <%= assoc %>: @<%= singular_table_name %>.<%= assoc %>
-
-%br
-%br
-
-= render '<%= assoc %>/form_modal', <%= singular_table_name %>_id: @<%= singular_table_name %>.id
-
-%br
-%br
-<% end %>
-<% end %>

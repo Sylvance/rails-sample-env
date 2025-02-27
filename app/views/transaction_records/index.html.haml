@@ -1,0 +1,43 @@
+%h1 Listing Transaction Records
+
+%table
+  %thead
+    %tr
+      %th transaction_date
+      %th notes
+      %th total_amount_excl_vat
+      %th total_amount_incl_vat
+      %th company
+      %th customer
+      %th user
+      %th Actions
+
+  %tbody
+    - @transaction_records.each do |transaction_record|
+      %tr
+        %td= transaction_record.transaction_date
+        %td= transaction_record.notes
+        %td= transaction_record.total_amount_excl_vat
+        %td= transaction_record.total_amount_incl_vat
+        %td= transaction_record.company_id
+        %td= transaction_record.customer_id
+        %td= transaction_record.user_id
+        %td
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', transaction_record, style: "color: white;"
+        %td
+          %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-transaction_record-dialog-#{transaction_record.id}').showModal()"} Edit
+          %dialog{id: "edit-transaction_record-dialog-#{transaction_record.id}"}
+            %h3 Edit Transaction Records
+            = render 'transaction_records/edit_modal', transaction_record: transaction_record
+            %button{type: "button", onclick: "document.getElementById('edit-transaction_record-dialog-#{transaction_record.id}').close()"} Cancel
+        %td
+          %button{type: "button", style: "background-color: oklch(0.514 0.222 16.935);", onclick: "document.getElementById('destroy-transaction_record-dialog-#{transaction_record.id}').showModal()"} Destroy
+          %dialog{id: "destroy-transaction_record-dialog-#{transaction_record.id}"}
+            %h3 Destroy transaction_record
+            = render 'transaction_records/destroy_modal', transaction_record: transaction_record
+            %button{type: "button", onclick: "document.getElementById('destroy-transaction_record-dialog-#{transaction_record.id}').close()"} Cancel
+
+%br
+
+= link_to 'New Transaction Record', new_transaction_record_path
