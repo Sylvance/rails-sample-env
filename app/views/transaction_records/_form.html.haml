@@ -1,0 +1,31 @@
+= form_with(model: @transaction_record) do |form|
+  - if @transaction_record.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@transaction_record.errors.count, "error")} prohibited this transaction_record from being saved:"
+      %ul
+        - @transaction_record.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = form.label :transaction_date
+    = form.date_select :transaction_date
+  .field
+    = form.label :notes
+    = form.text_area :notes
+  .field
+    = form.label :total_amount_excl_vat
+    = form.text_field :total_amount_excl_vat
+  .field
+    = form.label :total_amount_incl_vat
+    = form.text_field :total_amount_incl_vat
+  .field
+    = form.label :company_id
+    = form.text_field :company_id, value: @transaction_record.company_id, readonly: true
+  .field
+    = form.label :customer_id
+    = form.select :customer_id, options_for_select(company_customers.map { |c| [c.name, c.id] }, @transaction_record.customer_id)
+  .field
+    = form.label :user_id
+    = form.select :user_id, options_for_select(company_users.map { |u| [u.name, u.id] }, @transaction_record.user_id)
+  .actions
+    = form.submit

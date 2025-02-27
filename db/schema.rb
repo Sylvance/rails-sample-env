@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_26_005201) do
+ActiveRecord::Schema.define(version: 2025_02_27_165421) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "survey_id"
@@ -68,6 +68,21 @@ ActiveRecord::Schema.define(version: 2025_02_26_005201) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_deals_on_item_id"
     t.index ["transaction_id"], name: "index_deals_on_transaction_id"
+  end
+
+  create_table "dealzs", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "transaction_record_id", null: false
+    t.integer "quantity"
+    t.decimal "price"
+    t.integer "vat_rate_id", null: false
+    t.decimal "total_excl_vat"
+    t.decimal "total_incl_vat"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_dealzs_on_item_id"
+    t.index ["transaction_record_id"], name: "index_dealzs_on_transaction_record_id"
+    t.index ["vat_rate_id"], name: "index_dealzs_on_vat_rate_id"
   end
 
   create_table "gcra_settings", force: :cascade do |t|
@@ -128,6 +143,21 @@ ActiveRecord::Schema.define(version: 2025_02_26_005201) do
     t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 
+  create_table "transaction_records", force: :cascade do |t|
+    t.date "transaction_date"
+    t.text "notes"
+    t.decimal "total_amount_excl_vat"
+    t.decimal "total_amount_incl_vat"
+    t.integer "company_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_transaction_records_on_company_id"
+    t.index ["customer_id"], name: "index_transaction_records_on_customer_id"
+    t.index ["user_id"], name: "index_transaction_records_on_user_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.date "transaction_date"
     t.text "notes"
@@ -172,6 +202,9 @@ ActiveRecord::Schema.define(version: 2025_02_26_005201) do
   add_foreign_key "customers", "regions"
   add_foreign_key "deals", "items"
   add_foreign_key "deals", "transactions"
+  add_foreign_key "dealzs", "items"
+  add_foreign_key "dealzs", "transaction_records"
+  add_foreign_key "dealzs", "vat_rates"
   add_foreign_key "gcra_settings", "companies"
   add_foreign_key "items", "companies"
   add_foreign_key "questions", "companies"
@@ -180,6 +213,9 @@ ActiveRecord::Schema.define(version: 2025_02_26_005201) do
   add_foreign_key "surveys", "companies"
   add_foreign_key "surveys", "customers"
   add_foreign_key "surveys", "users"
+  add_foreign_key "transaction_records", "companies"
+  add_foreign_key "transaction_records", "customers"
+  add_foreign_key "transaction_records", "users"
   add_foreign_key "transactions", "companies"
   add_foreign_key "transactions", "customers"
   add_foreign_key "transactions", "users"

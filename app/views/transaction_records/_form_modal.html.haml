@@ -1,0 +1,7 @@
+%button{type: "button", onclick: "document.getElementById('new-transaction_record-dialog').showModal()"} Add New Transaction record
+
+%dialog{id: "new-transaction_record-dialog"}
+  %h3 Add New Transaction record
+  - @transaction_record = TransactionRecord.new(company_id: company_id)
+  = render 'transaction_records/form', company_users: company_users, company_customers: company_customers
+  %button{type: "button", onclick: "document.getElementById('new-transaction_record-dialog').close()"} Cancel
