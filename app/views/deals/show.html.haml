@@ -5,10 +5,10 @@
 
 %p
   %b Item:
-  = @deal.item
+  = @deal.item_id
 %p
-  %b Transaction:
-  = @deal.transaction
+  %b Transaction record:
+  = @deal.transaction_record_id
 %p
   %b Quantity:
   = @deal.quantity
@@ -17,7 +17,7 @@
   = @deal.price
 %p
   %b Vat rate:
-  = @deal.vat_rate
+  = @deal.vat_rate_id
 %p
   %b Total excl vat:
   = @deal.total_excl_vat

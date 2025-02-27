@@ -23,6 +23,6 @@ class Customer < ApplicationRecord
   belongs_to :company
   belongs_to :region
   belongs_to :company
-  has_many :transactions
+  has_many :transaction_records
   has_many :surveys
 end

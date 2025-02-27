@@ -2,7 +2,7 @@
   %thead
     %tr
       %th Item
-      %th Transaction
+      %th Transaction record
       %th Quantity
       %th Price
       %th Vat rate
@@ -15,11 +15,11 @@
   %tbody
     - deals.each do |deal|
       %tr
-        %td= deal.item
-        %td= deal.transaction
+        %td= deal.item_id
+        %td= deal.transaction_record_id
         %td= deal.quantity
         %td= deal.price
-        %td= deal.vat_rate
+        %td= deal.vat_rate_id
         %td= deal.total_excl_vat
         %td= deal.total_incl_vat
         %td

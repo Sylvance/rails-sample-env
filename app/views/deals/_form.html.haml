@@ -8,10 +8,10 @@
 
   .field
     = form.label :item_id
-    = form.select :item_id, options_for_select(Transaction.where(id: @deal.transaction_id).first.company.items.map { |item| [item.name, item.id] }, @deal.item_id)
+    = form.select :item_id, options_for_select(TransactionRecord.where(id: @deal.transaction_record_id).first.company.items.map { |item| [item.name, item.id] }, @deal.item_id)
   .field
-    = form.label :transaction_id
-    = form.text_field :transaction_id, name: "deal[transaction_id]", value: @deal.transaction_id
+    = form.label :transaction_record_id
+    = form.text_field :transaction_record_id, name: "deal[transaction_record_id]", value: @deal.transaction_record_id
   .field
     = form.label :quantity
     = form.number_field :quantity
@@ -19,8 +19,8 @@
     = form.label :price
     = form.text_field :price
   .field
-    = form.label :vat_rate
-    = form.text_field :vat_rate
+    = form.label :vat_rate_id
+    = form.text_field :vat_rate_id
   .field
     = form.label :total_excl_vat
     = form.text_field :total_excl_vat
