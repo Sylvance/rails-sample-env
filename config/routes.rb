@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  resources :dealzs
-  resources :transaction_records
   resources :deals
-  resources :transactions
+  resources :transaction_records
   resources :vat_rates
   resources :items
   resources :companies do

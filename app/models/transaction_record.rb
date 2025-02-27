@@ -29,5 +29,5 @@ class TransactionRecord < ApplicationRecord
   belongs_to :company
   belongs_to :customer
   belongs_to :user
-  has_many :dealzs, dependent: :destroy
+  has_many :deals, dependent: :destroy
 end

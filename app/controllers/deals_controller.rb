@@ -22,10 +22,6 @@ class DealsController < ApplicationController
   # POST /deals or /deals.json
   def create
     @deal = Deal.new(deal_params)
-    @transaction_record = Transaction.find(deal_params[:transaction_id])
-    @deal.transaction_record = @transaction_record
-
-    binding.irb
 
     respond_to do |format|
       if @deal.save
@@ -69,6 +65,6 @@ class DealsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deal_params
-      params.require(:deal).permit(:item_id, :transaction_id, :quantity, :price, :vat_rate, :total_excl_vat, :total_incl_vat)
+      params.require(:deal).permit(:item_id, :transaction_record_id, :quantity, :price, :vat_rate_id, :total_excl_vat, :total_incl_vat)
     end
 end
