@@ -18,4 +18,5 @@ class Company < ApplicationRecord
   has_many :regions, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :transactions, dependent: :destroy
+  has_many :transaction_records, dependent: :destroy
 end
