@@ -1,0 +1,7 @@
+%button{type: "button", onclick: "document.getElementById('new-transaction_record_summary-dialog').showModal()"} Add New Transaction record summary
+
+%dialog{id: "new-transaction_record_summary-dialog"}
+  %h3 Add New Transaction record summary
+  - @transaction_record_summary = TransactionRecordSummary.new
+  = render 'transaction_record_summaries/form'
+  %button{type: "button", onclick: "document.getElementById('new-transaction_record_summary-dialog').close()"} Cancel
