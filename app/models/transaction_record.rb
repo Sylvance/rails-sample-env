@@ -30,4 +30,16 @@ class TransactionRecord < ApplicationRecord
   belongs_to :customer
   belongs_to :user
   has_many :deals, dependent: :destroy
+
+  before_commit :calculate_totals
+
+  def calculate_totals
+    excl_total = deals.sum(&:total_excl_vat)
+    incl_total = deals.sum(&:total_incl_vat)
+
+    self.total_amount_excl_vat = excl_total
+    self.total_amount_incl_vat = incl_total
+
+    save
+  end
 end
