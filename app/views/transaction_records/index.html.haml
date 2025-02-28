@@ -1,5 +1,23 @@
 %h1 Listing Transaction Records
 
+.filter-form
+  = form_with url: transaction_records_path, method: :get do |f|
+    .filter-row
+      = f.label :start_date, "From"
+      = f.date_field :start_date, value: params[:start_date]
+      
+      = f.label :end_date, "To"
+      = f.date_field :end_date, value: params[:end_date]
+    
+    .filter-row
+      = f.label :customer_id, "Customer"
+      = f.select :customer_id, 
+                TransactionRecord.joins(:customer).distinct.pluck('customers.name, customers.id'),
+                { include_blank: "All Customers", selected: params[:customer_id] }
+    
+    = f.submit "Filter"
+    = link_to "Clear Filters", transaction_records_path
+
 %table
   %thead
     %tr
@@ -37,6 +55,11 @@
             %h3 Destroy transaction_record
             = render 'transaction_records/destroy_modal', transaction_record: transaction_record
             %button{type: "button", onclick: "document.getElementById('destroy-transaction_record-dialog-#{transaction_record.id}').close()"} Cancel
+
+.pagination-container
+  = pagination_links(@pagination)
+  .pagination-info
+    Showing #{@pagination[:items].size} of #{@pagination[:total_items]} records
 
 %br
 

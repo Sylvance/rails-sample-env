@@ -410,3 +410,68 @@ a[data-confirm]:hover {
     grid-template-columns: 1fr;
   }
 }
+
+nav.pagy {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+nav.pagy a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #71717a;
+  background-color: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+nav.pagy a:hover:not([aria-disabled="true"]) {
+  background-color: #f4f4f5;
+  color: #18181b;
+}
+
+nav.pagy a[aria-current="page"] {
+  background-color: #18181b;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+nav.pagy a[aria-disabled="true"] {
+  color: #a1a1aa;
+  cursor: not-allowed;
+}
+
+.filter-form {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.filter-row {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination-info {
+  color: #71717a;
+  font-size: 14px;
+}
