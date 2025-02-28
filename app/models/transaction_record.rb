@@ -33,6 +33,9 @@ class TransactionRecord < ApplicationRecord
 
   before_commit :calculate_totals
 
+  validates :transaction_date, presence: true
+  validate :transaction_date_not_in_future
+
   def calculate_totals
     excl_total = deals.sum(&:total_excl_vat)
     incl_total = deals.sum(&:total_incl_vat)
@@ -41,5 +44,13 @@ class TransactionRecord < ApplicationRecord
     self.total_amount_incl_vat = incl_total
 
     save
+  end
+
+  private
+
+  def transaction_date_not_in_future
+    if transaction_date.present? && transaction_date > Date.today
+      errors.add(:transaction_date, "cannot be in the future")
+    end
   end
 end
