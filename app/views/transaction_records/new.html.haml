@@ -1,5 +1,6 @@
 %h1 New Transaction Record
 
-= render 'form'
+- @transaction_record.company_id = Company.last.id
+= render 'form', company_users: User.all, company_customers: Customer.all
 
 = link_to 'Back', transaction_records_path
