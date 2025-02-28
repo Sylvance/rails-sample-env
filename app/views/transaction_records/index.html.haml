@@ -18,6 +18,10 @@
     = f.submit "Filter"
     = link_to "Clear Filters", transaction_records_path
 
+= link_to 'Export as CSV', transaction_records_path(format: :csv), class: 'button'
+%br
+%br
+
 %table
   %thead
     %tr
