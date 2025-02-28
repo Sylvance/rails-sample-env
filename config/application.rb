@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module RailsGraphqlSample
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.1
 
     config.paths["config/routes.rb"].concat(Dir[Rails.root.join("config/routes/**/*.rb")])
 
