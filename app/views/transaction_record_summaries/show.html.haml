@@ -1,0 +1,27 @@
+- if notice
+  %p#notice= notice
+
+%h1 Show Transaction Record Summary
+
+%p
+  %b Summary type:
+  = @transaction_record_summary.summary_type
+%p
+  %b Company:
+  = @transaction_record_summary.company_id
+%p
+  %b Customer:
+  = @transaction_record_summary.customer_id
+%p
+  %b Item:
+  = @transaction_record_summary.item_id
+%p
+  %b Start date:
+  = @transaction_record_summary.start_date
+%p
+  %b End date:
+  = @transaction_record_summary.end_date
+
+= link_to 'Edit', edit_transaction_record_summary_path(@transaction_record_summary)
+\|
+= link_to 'Back', transaction_record_summaries_path

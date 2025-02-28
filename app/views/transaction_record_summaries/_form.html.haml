@@ -1,0 +1,39 @@
+= form_with(model: @transaction_record_summary) do |form|
+  - if @transaction_record_summary.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@transaction_record_summary.errors.count, "error")} prohibited this transaction_record_summary from being saved:"
+      %ul
+        - @transaction_record_summary.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = form.label :summary_type
+    = form.select :summary_type, ['customer', 'item'], {}, onchange: 'toggleReferenceField(this.value)'
+  .field
+    = form.label :company_id
+    = form.select :company_id, options_for_select(Company.all.map { |c| [c.name, c.id] }, @transaction_record_summary.company_id)
+  .field
+    = form.label :customer_id
+    = form.select :customer_id, options_for_select(Customer.all.map { |c| [c.name, c.id] }, @transaction_record_summary.customer_id)
+  .field
+    = form.label :item_id
+    = form.select :item_id, options_for_select(Item.all.map { |u| [u.name, u.id] }, @transaction_record_summary.item_id)
+  .field
+    = form.label :start_date
+    = form.date_select :start_date
+  .field
+    = form.label :end_date
+    = form.date_select :end_date
+  .actions
+    = form.submit
+
+:javascript
+  function toggleReferenceField(value) {
+    if (value === 'customer') {
+      document.getElementById('customer_field').style.display = 'block';
+      document.getElementById('item_field').style.display = 'none';
+    } else {
+      document.getElementById('customer_field').style.display = 'none';
+      document.getElementById('item_field').style.display = 'block';
+    }
+  }

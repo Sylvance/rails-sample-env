@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_27_165421) do
+ActiveRecord::Schema.define(version: 2025_02_28_084051) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "survey_id"
@@ -129,6 +129,20 @@ ActiveRecord::Schema.define(version: 2025_02_27_165421) do
     t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 
+  create_table "transaction_record_summaries", force: :cascade do |t|
+    t.string "summary_type"
+    t.integer "company_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "item_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_transaction_record_summaries_on_company_id"
+    t.index ["customer_id"], name: "index_transaction_record_summaries_on_customer_id"
+    t.index ["item_id"], name: "index_transaction_record_summaries_on_item_id"
+  end
+
   create_table "transaction_records", force: :cascade do |t|
     t.date "transaction_date"
     t.text "notes"
@@ -182,6 +196,9 @@ ActiveRecord::Schema.define(version: 2025_02_27_165421) do
   add_foreign_key "surveys", "companies"
   add_foreign_key "surveys", "customers"
   add_foreign_key "surveys", "users"
+  add_foreign_key "transaction_record_summaries", "companies"
+  add_foreign_key "transaction_record_summaries", "customers"
+  add_foreign_key "transaction_record_summaries", "items"
   add_foreign_key "transaction_records", "companies"
   add_foreign_key "transaction_records", "customers"
   add_foreign_key "transaction_records", "users"
