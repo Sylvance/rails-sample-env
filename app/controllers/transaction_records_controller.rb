@@ -10,6 +10,11 @@ class TransactionRecordsController < ApplicationController
     @transaction_records = filter_transaction_records(@transaction_records)
     @pagination = paginate(@transaction_records)
     @transaction_records = @pagination[:items]
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data generate_csv(@transaction_records), filename: "transaction_records-#{Date.today}.csv" }
+    end
   end
 
   # GET /transaction_records/1 or /transaction_records/1.json
@@ -72,5 +77,15 @@ class TransactionRecordsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def transaction_record_params
       params.require(:transaction_record).permit(:transaction_date, :notes, :total_amount_excl_vat, :total_amount_incl_vat, :company_id, :customer_id, :user_id)
+    end
+
+    def generate_csv(transaction_records)
+      CSV.generate(headers: true) do |csv|
+        csv << ["Transaction Date", "Customer", "Total Amount Excl VAT", "Total Amount Incl VAT"]
+
+        transaction_records.each do |record|
+          csv << [record.transaction_date, record.customer.name, record.total_amount_excl_vat, record.total_amount_incl_vat]
+        end
+      end
     end
 end
