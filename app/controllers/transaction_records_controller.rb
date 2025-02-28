@@ -1,9 +1,15 @@
 class TransactionRecordsController < ApplicationController
+  include PaginationHelper
+  include FilteringHelper
+
   before_action :set_transaction_record, only: %i[ show edit update destroy ]
 
   # GET /transaction_records or /transaction_records.json
   def index
     @transaction_records = TransactionRecord.all
+    @transaction_records = filter_transaction_records(@transaction_records)
+    @pagination = paginate(@transaction_records)
+    @transaction_records = @pagination[:items]
   end
 
   # GET /transaction_records/1 or /transaction_records/1.json
