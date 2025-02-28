@@ -1,4 +1,4 @@
-= form_with(model: @transaction_record) do |form|
+= form_for @transaction_record do |form|
   - if @transaction_record.errors.any?
     #error_explanation
       %h2= "#{pluralize(@transaction_record.errors.count, "error")} prohibited this transaction_record from being saved:"

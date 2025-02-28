@@ -30,6 +30,8 @@ class Deal < ApplicationRecord
   belongs_to :transaction_record
   belongs_to :vat_rate
 
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+
   before_save :calculate_deal_totals
 
   after_save :update_transaction_record_totals
