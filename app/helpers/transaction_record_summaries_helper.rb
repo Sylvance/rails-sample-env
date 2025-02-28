@@ -1,0 +1,2 @@
+module TransactionRecordSummariesHelper
+end

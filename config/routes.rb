@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :transaction_record_summaries
   resources :deals
   resources :transaction_records
   resources :vat_rates

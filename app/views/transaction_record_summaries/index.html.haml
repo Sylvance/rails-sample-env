@@ -1,0 +1,57 @@
+%h1 Listing Transaction Record Summaries
+
+.filter-form
+  = form_with url: transaction_record_summaries_path, method: :get, local: true do |f|
+    .filter-row
+      = f.label :show_tax_inclusive, "Show Tax Inclusive Amounts"
+      = f.check_box :show_tax_inclusive, { checked: params[:show_tax_inclusive] == 'true' }, "true", "false"
+    
+    = f.submit "Apply Filter"
+
+%table
+  %thead
+    %tr
+      %th summary_type
+      %th company
+      %th customer
+      %th item
+      %th start_date
+      %th end_date
+      %th amount
+      %th Actions
+
+  %tbody
+    - @transaction_record_summaries.each do |transaction_record_summary|
+      %tr
+        %td= transaction_record_summary.summary_type
+        %td= transaction_record_summary.company_id
+        %td= transaction_record_summary.customer_id
+        %td= transaction_record_summary.item_id
+        %td= transaction_record_summary.start_date
+        %td= transaction_record_summary.end_date
+        %td
+          - if params[:show_tax_inclusive] == 'true'
+            = number_to_currency(transaction_record_summary.amount_incl_vat)
+            %small (incl. VAT)
+          - else
+            = number_to_currency(transaction_record_summary.amount_excl_vat)
+            %small (excl. VAT)
+        %td
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', transaction_record_summary, style: "color: white;"
+        %td
+          %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-transaction_record_summary-dialog-#{transaction_record_summary.id}').showModal()"} Edit
+          %dialog{id: "edit-transaction_record_summary-dialog-#{transaction_record_summary.id}"}
+            %h3 Edit Transaction Record Summaries
+            = render 'transaction_record_summaries/edit_modal', transaction_record_summary: transaction_record_summary
+            %button{type: "button", onclick: "document.getElementById('edit-transaction_record_summary-dialog-#{transaction_record_summary.id}').close()"} Cancel
+        %td
+          %button{type: "button", style: "background-color: oklch(0.514 0.222 16.935);", onclick: "document.getElementById('destroy-transaction_record_summary-dialog-#{transaction_record_summary.id}').showModal()"} Destroy
+          %dialog{id: "destroy-transaction_record_summary-dialog-#{transaction_record_summary.id}"}
+            %h3 Destroy transaction_record_summary
+            = render 'transaction_record_summaries/destroy_modal', transaction_record_summary: transaction_record_summary
+            %button{type: "button", onclick: "document.getElementById('destroy-transaction_record_summary-dialog-#{transaction_record_summary.id}').close()"} Cancel
+
+%br
+
+= link_to 'New Transaction Record Summary', new_transaction_record_summary_path

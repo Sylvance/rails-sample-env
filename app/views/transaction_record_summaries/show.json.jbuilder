@@ -1,0 +1,1 @@
+json.partial! "transaction_record_summaries/transaction_record_summary", transaction_record_summary: @transaction_record_summary

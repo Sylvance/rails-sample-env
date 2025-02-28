@@ -1,0 +1,37 @@
+%table
+  %thead
+    %tr
+      %th Summary type
+      %th Company
+      %th Customer
+      %th Item
+      %th Start date
+      %th End date
+      %th Actions
+      %th
+      %th
+
+  %tbody
+    - transaction_record_summaries.each do |transaction_record_summary|
+      %tr
+        %td= transaction_record_summary.summary_type
+        %td= transaction_record_summary.company
+        %td= transaction_record_summary.customer
+        %td= transaction_record_summary.item
+        %td= transaction_record_summary.start_date
+        %td= transaction_record_summary.end_date
+        %td
+          %button{type: "button", style: "background-color: oklch(0.508 0.118 165.612);"}
+            = link_to 'Show', transaction_record_summary, style: "color: white;"
+        %td
+          %button{type: "button", style: "background-color: oklch(0.488 0.243 264.376);", onclick: "document.getElementById('edit-transaction_record_summary-dialog-#{transaction_record_summary.id}').showModal()"} Edit
+          %dialog{id: "edit-transaction_record_summary-dialog-#{transaction_record_summary.id}"}
+            %h3 Edit Transaction record summary
+            = render 'transaction_record_summaries/edit_modal', transaction_record_summary: transaction_record_summary
+            %button{type: "button", onclick: "document.getElementById('edit-transaction_record_summary-dialog-#{transaction_record_summary.id}').close()"} Cancel
+        %td
+          %button{type: "button", style: "background-color: oklch(0.514 0.222 16.935);", onclick: "document.getElementById('destroy-transaction_record_summary-dialog-#{transaction_record_summary.id}').showModal()"} Destroy
+          %dialog{id: "destroy-transaction_record_summary-dialog-#{transaction_record_summary.id}"}
+            %h3 Destroy Transaction record summary
+            = render 'transaction_record_summaries/destroy_modal', transaction_record_summary: transaction_record_summary
+            %button{type: "button", onclick: "document.getElementById('destroy-transaction_record_summary-dialog-#{transaction_record_summary.id}').close()"} Cancel
